@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Function to generate subsets using backtracking
+void generateSubsets(const vector<int>& arr, vector<int>& current, int index) {
+    // Print the current subset
+    cout << "{";
+    for (size_t i = 0; i < current.size(); i++) {
+        cout << current[i];
+        if (i < current.size() - 1) cout << " ";
+    }
+    cout << "}" << endl;
+
+    // Generate further subsets
+    for (int i = index; i < arr.size(); i++) {
+        current.push_back(arr[i]); // Include this element
+        generateSubsets(arr, current, i + 1); // Move to the next element
+        current.pop_back(); 
+    }
+}
+
+int main() {
+    // Input
+    vector<int> arr;
+    int element;
+
+  //  cout << "All Subsets: ";
+    while (cin >> element) {
+        arr.push_back(element);
+    }
+    
+   
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    cout << "All Subsets:" << endl;
+    vector<int> current;
+    
+   
+    generateSubsets(arr, current, 0);
+
+    return 0;
+}
